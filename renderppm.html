@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>0/1 Image Renderer</title>
+  <title>P1 Binary Image Renderer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     body {
-      font-family: sans-serif;
-      margin: 20px;
+      font-family: system-ui, Arial, sans-serif;
+      margin: 24px;
     }
     textarea {
       width: 100%;
-      height: 200px;
+      height: 240px;
       font-family: monospace;
       font-size: 14px;
     }
     button {
-      margin-top: 10px;
+      margin-top: 12px;
       padding: 8px 16px;
       font-size: 16px;
     }
@@ -23,29 +25,92 @@
       margin-top: 20px;
       border: 1px solid black;
       image-rendering: pixelated;
+      max-width: 100%;
+    }
+    .error {
+      color: #b00020;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    .hint {
+      color: #555;
+      margin-bottom: 8px;
     }
   </style>
 </head>
 <body>
 
-<h2>Binary Image Renderer</h2>
+<h2>P1 Binary Image Renderer</h2>
 
-<textarea id="input" placeholder="Paste 0s and 1s here..."></textarea>
+<div class="hint">
+Format:<br>
+<code>P1</code><br>
+<code>WIDTH HEIGHT</code><br>
+Rows of <code>0</code> and <code>1</code>
+</div>
+
+<textarea id="input" placeholder="Paste P1 data here..."></textarea>
 <br>
 <button onclick="render()">Render</button>
 
-<br>
+<div id="error" class="error"></div>
+
 <canvas id="canvas"></canvas>
 
 <script>
 function render() {
+  const errorDiv = document.getElementById("error");
+  errorDiv.textContent = "";
+
   const text = document.getElementById("input").value.trim();
   if (!text) return;
 
-  const rows = text.split(/\r?\n/);
-  const height = rows.length;
-  const width = rows[0].length;
+  const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
 
+  // --- Check header ---
+  if (lines[0] !== "P1") {
+    errorDiv.textContent = "Error: First line must be exactly 'P1'";
+    return;
+  }
+
+  // --- Check size line ---
+  if (lines.length < 2) {
+    errorDiv.textContent = "Error: Missing width and height line";
+    return;
+  }
+
+  const dims = lines[1].split(/\s+/).map(Number);
+  if (dims.length !== 2 || dims.some(isNaN)) {
+    errorDiv.textContent = "Error: Second line must contain WIDTH HEIGHT";
+    return;
+  }
+
+  const [width, height] = dims;
+
+  // --- Check row count ---
+  const dataRows = lines.slice(2);
+  if (dataRows.length !== height) {
+    errorDiv.textContent =
+      `Error: Expected ${height} rows, but found ${dataRows.length}`;
+    return;
+  }
+
+  // --- Validate each row ---
+  for (let y = 0; y < height; y++) {
+    const row = dataRows[y];
+    if (row.length !== width) {
+      errorDiv.textContent =
+        `Error: Row ${y + 1} length is ${row.length}, expected ${width}`;
+      return;
+    }
+    if (!/^[01]+$/.test(row)) {
+      errorDiv.textContent =
+        `Error: Row ${y + 1} contains characters other than 0 or 1`;
+      return;
+    }
+  }
+
+  // --- Render ---
   const canvas = document.getElementById("canvas");
   canvas.width = width;
   canvas.height = height;
@@ -55,7 +120,7 @@ function render() {
 
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
-      const v = rows[y][x] === '1' ? 0 : 255; // 1 = black
+      const v = dataRows[y][x] === "1" ? 0 : 255;
       const i = (y * width + x) * 4;
       img.data[i]     = v;
       img.data[i + 1] = v;
