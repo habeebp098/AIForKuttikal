@@ -1,15 +1,25 @@
-/* --- 1. Variables & Global Settings --- */
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
 :root {
+    /* Color Palette */
     --primary: #6C63FF;       /* Bright Purple */
     --primary-hover: #5a52d5;
     --secondary: #00C9A7;     /* Mint/Teal */
-    --accent: #F6AD55;        /* Orange for accents */
+    --accent: #F6AD55;        /* Orange */
+    
+    /* Backgrounds */
     --bg-light: #F7FAFC;      /* Very light grey-blue */
+    --white: #ffffff;
+    
+    /* Typography */
     --text-dark: #2D3748;     /* Dark Charcoal */
     --text-light: #718096;    /* Soft Grey */
-    --white: #ffffff;
+    
+    /* Dimensions */
     --radius: 16px;           /* Standard rounded corner */
     
+    /* Fonts */
     --font-malayalam: 'Noto Sans Malayalam', sans-serif;
     --font-english: 'Nunito', sans-serif;
 }
@@ -21,26 +31,38 @@ body {
     background-color: var(--white);
     color: var(--text-dark);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 h1, h2, h3, h4, .hero-subtitle { font-family: var(--font-malayalam); }
 a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
 
 /* Utility Classes */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* Buttons */
 .btn {
     display: inline-block; padding: 12px 28px; border-radius: 50px;
-    font-weight: 700; border: none; cursor: pointer;
+    font-weight: 700; border: none; cursor: pointer; text-align: center;
 }
-.btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3); }
+.btn-primary { 
+    background: var(--primary); color: white; 
+    box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3); 
+}
 .btn-primary:hover { transform: translateY(-2px); background: var(--primary-hover); }
-.btn-outline { border: 2px solid #E2E8F0; color: var(--text-dark); margin-left: 10px; background: transparent;}
+
+.btn-outline { 
+    border: 2px solid #E2E8F0; color: var(--text-dark); margin-left: 10px; background: transparent;
+}
 .btn-outline:hover { border-color: var(--text-dark); background: white; }
+
 .btn-sm { padding: 8px 20px; font-size: 0.9rem; }
 .btn-lg { padding: 15px 35px; font-size: 1.1rem; }
 
-/* --- 2. Navbar --- */
+/* =========================================
+   2. NAVIGATION BAR
+   ========================================= */
 .navbar {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -51,11 +73,19 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     border-bottom: 1px solid #edf2f7;
 }
 .nav-container { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; color: var(--text-dark); }
-.logo i { color: var(--primary); font-size: 1.4rem; }
-.badge { background: #E9D8FD; color: var(--primary); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; }
 
-/* --- 3. Hero Section (Center Stage) --- */
+.logo { 
+    font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; color: var(--text-dark); 
+}
+.logo i { color: var(--primary); font-size: 1.4rem; }
+.badge { 
+    background: #E9D8FD; color: var(--primary); font-size: 0.7rem; 
+    padding: 2px 8px; border-radius: 10px; text-transform: uppercase; 
+}
+
+/* =========================================
+   3. HERO SECTION (HOME)
+   ========================================= */
 .hero-section.centered-hero {
     background: linear-gradient(180deg, #ffffff 0%, #F0F9FF 100%);
     padding-top: 60px;
@@ -82,7 +112,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     max-width: 600px; margin-left: auto; margin-right: auto;
 }
 
-/* Hero Animations */
+/* Animations */
 .btn-glow { animation: pulse-purple 2s infinite; }
 @keyframes pulse-purple {
     0% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.4); }
@@ -123,7 +153,9 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     50% { transform: translateY(-15px); }
 }
 
-/* --- 4. Features Section --- */
+/* =========================================
+   4. FEATURES SECTION (HOME)
+   ========================================= */
 .features-section { padding: 80px 0; background: white; }
 .section-heading { text-align: center; font-size: 2rem; margin-bottom: 10px; }
 .section-sub { text-align: center; color: var(--text-light); margin-bottom: 50px; }
@@ -143,20 +175,19 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .blue-light { background: #E6FFFA; color: #319795; }
 .pink-light { background: #FED7D7; color: #E53E3E; }
 
-/* --- 5. Roadmap (Horizontal) --- */
+/* =========================================
+   5. ROADMAP SECTION (HOME)
+   ========================================= */
 .roadmap-section { padding: 80px 0; background: var(--bg-light); text-align: center; }
 .roadmap-wrapper { position: relative; margin: 60px 0; padding: 0 20px; }
 
-/* The Line behind nodes */
 .roadmap-line {
     position: absolute; top: 40px; left: 10%; right: 10%; height: 4px; background: #E2E8F0; z-index: 0;
 }
 .roadmap-steps { display: flex; justify-content: space-between; position: relative; z-index: 1; }
 
 .step-node { display: flex; flex-direction: column; align-items: center; width: 140px; }
-.step-icon {
-    font-size: 1.5rem; color: #CBD5E0; margin-bottom: 15px; transition: 0.3s;
-}
+.step-icon { font-size: 1.5rem; color: #CBD5E0; margin-bottom: 15px; transition: 0.3s; }
 .step-icon.active-icon { color: var(--primary); transform: scale(1.2); }
 
 .step-dot {
@@ -167,16 +198,16 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .step-node h4 { font-size: 1rem; margin-bottom: 5px; }
 .step-node span { font-size: 0.85rem; color: var(--text-light); display: block; }
 .status-text { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-top: 5px; color: #A0AEC0; }
+.step-node.locked { opacity: 0.6; }
 
 .learn-more-btn {
     margin-top: 10px; display: inline-block; padding: 6px 16px; background: var(--primary); color: white;
     font-size: 0.8rem; border-radius: 20px; font-weight: 700;
 }
 
-/* Locked State opacity */
-.step-node.locked { opacity: 0.6; }
-
-/* --- 6. Project Showcase --- */
+/* =========================================
+   6. PROJECT SHOWCASE (HOME)
+   ========================================= */
 .showcase-section { padding: 80px 0; background: white; text-align: center; }
 .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
 
@@ -186,22 +217,18 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 }
 .project-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
-/* Code Preview Card Styles */
-.project-preview {
-    height: 180px; position: relative; display: flex; align-items: center; justify-content: center;
-}
+/* Card Previews */
+.project-preview { height: 180px; position: relative; display: flex; align-items: center; justify-content: center; }
 .dark-code { background: #1A202C; padding: 20px; }
 .code-mockup { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #A0AEC0; width: 100%; }
 .c-purple { color: #D6BCFA; } .c-yellow { color: #FAF089; } .c-blue { color: #63B3ED; } .c-green { color: #9AE6B4; }
 .overlay-icon { position: absolute; right: 15px; bottom: 15px; width: 50px; opacity: 0.8; }
 
-/* Image Sorter Preview Styles */
 .image-preview { background: #E6FFFA; flex-direction: column; }
 .img-row { display: flex; gap: 15px; margin-bottom: 10px; }
 .img-box { width: 50px; height: 50px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-size: 1.2rem; }
 .scan-line { width: 80%; height: 2px; background: var(--secondary); box-shadow: 0 0 10px var(--secondary); }
 
-/* Game Preview Styles */
 .game-preview { background: #FEFCBF; color: #D69E2E; font-size: 3rem; }
 .check-badge { font-size: 1.5rem; background: #48BB78; color: white; padding: 5px; border-radius: 50%; position: absolute; bottom: 40px; right: 100px; border: 3px solid #FEFCBF; }
 
@@ -209,7 +236,9 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .project-info h3 { font-size: 1.2rem; margin-bottom: 5px; }
 .project-info p { color: var(--text-light); font-size: 0.95rem; }
 
-/* --- 7. Footer --- */
+/* =========================================
+   7. FOOTER
+   ========================================= */
 .footer { background: #1A202C; color: white; padding: 60px 0 20px; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; border-bottom: 1px solid #4A5568; padding-bottom: 40px; }
 .footer-col h4 { color: #CBD5E0; margin-bottom: 20px; font-size: 1.1rem; }
@@ -218,38 +247,9 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .footer-col a:hover { color: white; }
 .footer-bottom { text-align: center; margin-top: 20px; color: #718096; font-size: 0.85rem; }
 
-/* --- 8. Mobile Responsiveness --- */
-@media (max-width: 768px) {
-    .hero-title { font-size: 2.5rem; }
-    .hero-visual-stage { height: 350px; margin-top: 20px; }
-    .blob-background { width: 320px; height: 320px; }
-    
-    /* Roadmap Stack for Mobile */
-    .roadmap-line { display: none; }
-    .roadmap-steps { flex-direction: column; gap: 30px; align-items: center; }
-    .step-node { width: 100%; flex-direction: row; text-align: left; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    .step-icon { margin: 0 15px 0 0; }
-    .step-dot { display: none; } /* Hide dots on mobile list */
-    .learn-more-btn { margin-left: auto; margin-top: 0; }
-    
-    .footer-grid { grid-template-columns: 1fr; text-align: center; }
-}
-
-
-
-
-
-
-
-
-
-
-
 /* =========================================
-   PROFESSIONAL CURRICULUM LAYOUT
+   8. LEVEL PAGES & CURRICULUM CARD LAYOUT
    ========================================= */
-
-/* --- Level Header Tweaks --- */
 .level-header {
     padding: 60px 0 80px; /* More padding bottom */
     text-align: center;
@@ -305,7 +305,6 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     overflow: hidden;
     aspect-ratio: 16/9;
     background: #000;
-    group: hover;
 }
 .vid-thumb {
     width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.3s;
@@ -363,9 +362,29 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .act-link span { font-size: 0.9rem; line-height: 1.3; }
 .act-link small { color: #A0AEC0; font-size: 0.75rem; display: block; }
 
-
-/* --- Mobile Responsiveness --- */
+/* =========================================
+   9. MOBILE RESPONSIVENESS
+   ========================================= */
 @media (max-width: 900px) {
+    /* Navbar */
+    .hero-title { font-size: 2.5rem; }
+    
+    /* Hero */
+    .hero-visual-stage { height: 350px; margin-top: 20px; }
+    .blob-background { width: 320px; height: 320px; }
+    
+    /* Roadmap (Stack) */
+    .roadmap-line { display: none; }
+    .roadmap-steps { flex-direction: column; gap: 30px; align-items: center; }
+    .step-node { width: 100%; flex-direction: row; text-align: left; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    .step-icon { margin: 0 15px 0 0; }
+    .step-dot { display: none; } 
+    .learn-more-btn { margin-left: auto; margin-top: 0; }
+    
+    /* Footer */
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    
+    /* Level Pages */
     .curriculum-card { grid-template-columns: 1fr; } /* Stack vertically */
     .card-main { border-right: none; border-bottom: 1px solid #E2E8F0; }
     .card-sidebar { padding: 20px; }
