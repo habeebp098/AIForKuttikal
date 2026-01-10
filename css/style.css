@@ -274,13 +274,24 @@ ul { list-style: none; }
     display: flex; flex-direction: column; gap: 40px; padding-bottom: 80px;
 }
 
-.curriculum-card {
+/* .curriculum-card {
     background: white;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     overflow: hidden;
     display: grid;
     grid-template-columns: 2fr 1fr; /* 2 parts Video, 1 part Activity */
+    border: 1px solid #E2E8F0;
+} */
+
+.curriculum-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    overflow: hidden;
+    display: grid;
+    /* CHANGED: 1.2fr makes the video side smaller (approx 55% width) */
+    grid-template-columns: 1.2fr 1fr; 
     border: 1px solid #E2E8F0;
 }
 
