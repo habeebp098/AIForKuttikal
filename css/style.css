@@ -234,3 +234,195 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     
     .footer-grid { grid-template-columns: 1fr; text-align: center; }
 }
+
+/* =========================================
+   NEW STYLES FOR LEVEL PAGES
+   ========================================= */
+
+/* --- Level Header --- */
+.level-header {
+    padding: 60px 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.level-1-theme {
+    background: linear-gradient(135deg, #00C9A7 0%, #008f7a 100%); /* Green Theme for Level 1 */
+}
+
+.level-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.level-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.level-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+/* Progress Bar in Header */
+.progress-bar-container {
+    background: rgba(0,0,0,0.2);
+    width: 300px;
+    height: 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #F6AD55; /* Orange progress */
+    border-radius: 10px;
+}
+
+.progress-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* --- Lesson Card Layout --- */
+.lesson-list-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 80px;
+}
+
+.lesson-card {
+    display: flex;
+    background: white;
+    border: 1px solid #edf2f7;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: transform 0.2s;
+}
+
+.lesson-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* Thumbnail Area */
+.lesson-thumbnail {
+    width: 300px; /* Fixed width for desktop */
+    min-width: 300px;
+    position: relative;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.lesson-card:hover .thumb-img {
+    opacity: 0.6;
+    transform: scale(1.05);
+}
+
+.play-btn-overlay {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary); /* Purple */
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+/* Content Area */
+.lesson-content {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lesson-number {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.lesson-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #2D3748;
+}
+
+.lesson-content p {
+    color: #4A5568;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.lesson-actions {
+    display: flex;
+    gap: 15px;
+}
+
+/* Activity Button Style */
+.btn-activity {
+    background: #F6AD55; /* Orange */
+    color: white;
+    border: none;
+}
+.btn-activity:hover {
+    background: #DD6B20;
+    transform: translateY(-2px);
+}
+
+/* --- Mobile Responsive for Level Page --- */
+@media (max-width: 768px) {
+    .lesson-card {
+        flex-direction: column;
+    }
+    
+    .lesson-thumbnail {
+        width: 100%;
+        min-width: auto;
+        height: 180px;
+    }
+    
+    .level-header h1 {
+        font-size: 2rem;
+    }
+    
+    .lesson-content h3 {
+        font-size: 1.1rem;
+    }
+}
